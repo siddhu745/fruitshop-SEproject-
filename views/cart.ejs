@@ -1,0 +1,36 @@
+<%- include('partials/header.ejs') %> 
+<% var total = 0 %> 
+
+<div class="container-fluid">
+    <h1 style="position: relative; left:350px">My Cart</h1> 
+    <div class="row">
+        <div class="col-md-8">
+            <% cartItems.reverse().forEach(element => { %>
+                <div class="cart-card">
+                    <div class="product-div">
+                        <img class="cartImg" src="<%= element.imagesrc %>" alt="">
+                        <p style="font-weight: bold; "><%= element.fruitname %></p>
+                    </div>
+                    <p>
+                        <span style="font-weight: 500;">quantity : </span>
+                        <%= element.quantity %>
+                    </p>
+                    <p style="color: rgb(3, 199, 0); font-weight: 700;">
+                        <span style="font-weight: 500; color: black;">price :  </span>
+                        Rs.<%= element.price %>/-
+                    </p>
+                    <button style="border: none; background-color:white">❌</button>
+                </div>
+                <% total += parseInt(element.price) %> 
+            <%})%> 
+            <h4 style="position: relative; left:700px; color: green;">
+                Total price = Rs.<%= total %> /-
+            </h4>
+        </div>
+        <div class="col-md-4">
+            <h6> <a href="/store">Continue Shopping....</a> </h6>
+        </div>
+    </div>
+    <br><br><br>
+</div>
+<%- include('partials/footer.ejs') %> 

@@ -1,0 +1,349 @@
+html{
+  height: 100%;
+  overflow-x: hidden;
+}
+.margin{
+  margin-bottom: 10rem;
+}
+body{
+    min-height: 100%;
+    text-decoration-color: grey;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+a{
+    text-decoration: none;
+    color: gray;
+}
+a:hover{
+    color:black;
+}
+.navul{
+    line-height: 3.5rem;
+    margin-left: 800px;
+}
+li{
+    padding-inline: 2rem;
+}
+.navbar-brand{
+    padding-left: 6rem;
+}
+.navbar{
+    letter-spacing: 0.2rem;
+    position: sticky;
+    top: 0px;
+    z-index: 100;
+}
+.hover-underline-animation {
+    display: inline-block;
+    position: relative;
+    color: #000000;
+}
+  
+.hover-underline-animation:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #43dd5f;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+  
+.hover-underline-animation:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.homediv1{
+    height: 500px;
+    width: 500px;
+    border-radius: 20%;
+    background-color: #ffffff;
+    position: static;
+    margin-left: 100px;
+    /* box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+
+}
+.homediv2{
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    height: 1300px;
+    background-color: #ffffff;
+    position: static;
+    margin-top: 100px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #43dd5f;
+}
+.quantity-btn{
+  border: none;
+  background-color:white;
+  color: rgb(53, 151, 0);
+}
+.quantity-btn:hover{
+  color: black;
+}
+/* CSS */
+.button-85 {
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: rgb(7, 7, 7);
+  background: rgb(255, 255, 255);
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  right: 100px;
+  bottom: 100px;
+}
+
+.button-85:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #76fc0f,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button-85 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.button-85:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(255, 255, 255);
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+/* --------------------------------------------------- */
+.footerlist{
+    color: white;
+    position: relative;
+    top: 100px;
+    right: 150px;
+    list-style: none;
+}
+.fa{
+    font-size: 1.2rem;
+    color: white;
+    text-decoration: none;
+}
+.fa:hover{
+    color: gray;
+    text-decoration: none;
+}
+
+
+/* ------------------- */
+
+.hover-1{
+  font-size: 1.2rem;
+  color: green;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.hover-1:hover{
+  color: #000000;
+}
+
+/* ////////////////// */
+/* store css */
+.row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-top: 5rem !important;
+}
+.first{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 300px;
+  border-radius: 10%;
+  border-style: solid;
+  border-color: rgb(240, 240, 240);
+  margin: 10px;
+}
+.first img {
+  width: 200px !important;
+  height: 200px !important;
+  object-fit: contain;
+}
+.fcButton{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  left: 10px;
+  top: 20px;
+}
+.fcButton:hover{
+  color: blue;
+  background: #00ff55 !important;
+}
+.fc{
+  text-align: center !important;
+}
+.quantity{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+  bottom: 10px;
+}
+
+footer{
+   margin-top: auto;
+   height: 500px; 
+   background-color: #43dd5f; 
+   position: relative;
+}
+
+.cartImg{
+  height: 80px;
+
+}
+
+.cart-button{
+  background-color: red;
+  color: white;
+  border:  none;
+  block-size: 4%;
+  border-radius: 10%;
+}
+
+
+.cart-card{
+    width: 40rem;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content:space-around;
+    margin-top: 1%;
+    align-items: center;
+    position: relative;
+    left: 305px;
+    box-shadow: inset 0 -3em 3em rgba(221, 254, 220, 0.1), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(137, 232, 158, 0.3)
+} 
+
+.product-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+/* --------------------------------------------------- */
+/* CSS */
+.button-85G {
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: rgb(7, 7, 7);
+  background: rgb(255, 255, 255);
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  right: 100px;
+  bottom: 100px;
+}
+
+.button-85G:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #76fc0f,
+    #09ff00,
+    #00ff0d,
+    #48ff00,
+    #f6ff00,
+    #00ff15,
+    #ffffff,
+    #00ff55,
+    #d4ff00
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button-85G 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowing-button-85G {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.button-85G:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(255, 255, 255);
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+.mt-5{
+  position: relative;
+  margin-bottom: 20rem;
+}
