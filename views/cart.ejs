@@ -2,7 +2,7 @@
 <% var total = 0 %> 
 
 <div class="container-fluid">
-    <h1 style="position: relative; left:350px">My Cart</h1> 
+    <h1 style="position: relative; left:350px"><%= username %> Cart</h1> 
     <div class="row">
         <div class="col-md-8">
             <% cartItems.reverse().forEach(element => { %>
@@ -19,16 +19,24 @@
                         <span style="font-weight: 500; color: black;">price :  </span>
                         Rs.<%= element.price %>/-
                     </p>
-                    <button style="border: none; background-color:white">❌</button>
+                    <form action="/delete" method="post">
+                        <input type="hidden" name = "productId" value="<%= element._id %>">
+                        <button style="border: none; background-color:white">
+                            ❌
+                        </button>
+                    </form>
                 </div>
                 <% total += parseInt(element.price) %> 
             <%})%> 
-            <h4 style="position: relative; left:700px; color: green;">
-                Total price = Rs.<%= total %> /-
+            <h4 id="total" style="position: relative; left:700px; color: green;">
+                Total price = Rs. <span><%= total %></span>/- 
             </h4>
+            <button onclick="send(total)" style="position: relative; top: 30px; left:770px; color:green" class="button-73">
+                <a href="/buy">CheckOut</a>
+            </button>
         </div>
         <div class="col-md-4">
-            <h6> <a href="/store">Continue Shopping....</a> </h6>
+            <h3> <a href="/store">Continue Shopping....</a> </h3>
         </div>
     </div>
     <br><br><br>

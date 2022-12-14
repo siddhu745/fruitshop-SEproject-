@@ -10,7 +10,8 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy
 const findOrCreate = require('mongoose-findorcreate')
 
 const app = express()
-
+var l = false;
+var un = "Your"
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.static('public'))
 app.set('view engine','ejs')
@@ -24,8 +25,6 @@ app.use(passport.session())
 
 
 mongoose.connect("mongodb://127.0.0.1:27017/userDB",{useNewUrlParser : true})
-// mongoose.connect("mongodb://127.0.0.1:27017/userDB",{useNewUrlParser : true})
-
 const userSchema = new mongoose.Schema({
     email : String,
     password : String,
@@ -40,11 +39,22 @@ const productSchema = new mongoose.Schema({
     price : String
 })
 
+const orderSchema = new mongoose.Schema({
+    firstname : String,
+    lastname : String,
+    address : String,
+    address2 : String,
+    city : String,
+    state : String,
+    zip : String
+})
+
 userSchema.plugin(passportLocalMongoose)
 userSchema.plugin(findOrCreate)
 
 const User = new mongoose.model("User",userSchema)
 const Product = new mongoose.model("Product",productSchema)
+const Order = new mongoose.model("Order",orderSchema)
 
 passport.use(User.createStrategy())
 
@@ -95,13 +105,51 @@ app.get('/contactus',function(req,res){
 app.get('/cart',function(req,res){
     Product.find({},function(err,foundItems){
         res.render('cart',{title : "cart",
-                            cartItems : foundItems})
+                            cartItems : foundItems,
+                            username : un})
 
     })
 })
 
+var amount;
+
+app.get('/buy',function(req,res){
+    res.render('buy',{title: "buy"})
+})
+app.post('/buy',function(req,res){
+    amount = req.body
+})
+
+app.get('/showmsg',function(req,res){
+    res.render('show',{title:"message"})
+})
+app.post('/order',function(req,res){ 
+    const order = new Order({
+        firstname : req.body.fname,
+        lastname : req.body.lname,
+        address : req.body.inputAddress,
+        address2 : req.body.inputAddress2,
+        city : req.body.inputCity,
+        state : req.body.inputState,
+        zip : req.body.inputZip
+    })
+    // console.log(order);
+    order.save()
+
+    res.redirect('/showmsg')
+})
+
 app.get('/signin',function(req,res){
-    res.render('home',{title:"signin"})
+    if(l === false){
+        res.render('home',{title:"signin"})
+    }
+    else{
+            res.render('logout',{title : "account",
+                                username : un})
+    
+        
+    }
+    
 })
 app.get('/store/seasonalfruits',function(req,res){
     res.render('seasonalfruits',{title : "seasonalfruits"})
@@ -112,18 +160,14 @@ app.get('/store/exoticfruits',function(req,res){
 app.get('/store/sun-dry-fruit-and-berry',function(req,res){
     res.render('sunDryFruitAndBerry',{title :"sunDryfruitsAndBerry"})
 })
-app.get('/store/giftbasket',function(req,res){
-    res.render('giftbasket',{title :"giftbasket"})
-})
+
 app.get('/store/frozenfood',function(req,res){
     res.render('frozenfood',{title :"frozenfood"})
 })
 app.get('/store/dryfruitsandnuts',function(req,res){
     res.render('DryFruitsAndNuts',{title :"DryFruitsAndNuts"})
 })
-app.get('/store/seeds',function(req,res){
-    res.render('seeds',{title :"seeds"})
-})
+
 
 
 
@@ -137,6 +181,16 @@ app.post('/cart',function(req,res){
         price : productdata.Price
     })
     ob.save()
+})
+
+app.post('/delete',function(req,res){ 
+    Product.findByIdAndRemove(req.body.productId,function(err){
+        if(!err) console.log("successfully deleted")
+        else console.log(err);
+    })
+    res.redirect('/cart')
+    // console.log(req.body.productId);
+    // res.redirect('/cart')
 })
 // ------------------------------auth---------------------------------------
 app.get('/auth/google',
@@ -152,14 +206,16 @@ app.get('/auth/google/secrets',
 })
 
 app.get('/register',function(req,res){
-    res.render('register',{title :"DryFruitsAndNuts"})
+    res.render('register',{title :"register"})
 })
 
 app.get('/login',function(req,res){
-    res.render('login',{title :"DryFruitsAndNuts"})
+    l = true
+    res.render('login',{title :"login"})
 })
 
 app.get('/logout',function(req,res){
+    l = false
     req.logout(function(err){
         if(err){
             console.log(err)
@@ -212,6 +268,8 @@ app.post('/submit',function(req,res){
 
 
 app.post('/register',function(req,res){
+    l = true
+    un = req.body.username
     User.register({username : req.body.username,},req.body.password,function(err,user){
         if(err){
             console.log(err)
@@ -226,6 +284,7 @@ app.post('/register',function(req,res){
 })
 
 app.post('/login',function(req,res){
+    un = req.body.username
     const user = new User({
         username : req.body.username,
         password : req.body.password

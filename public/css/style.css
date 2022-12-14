@@ -347,3 +347,102 @@ footer{
   position: relative;
   margin-bottom: 20rem;
 }
+
+/* -------------------------------- */
+
+.button-73 {
+  appearance: none;
+  background-color: #FFFFFF;
+  border-radius: 40em;
+  border-style: none;
+  box-shadow: #ADCFFF 0 -12px 6px inset;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -.24px;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.3rem;
+  quotes: auto;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-73:hover {
+  background-color: #2dff29;
+  box-shadow: #2b312b 0 -6px 8px inset;
+  transform: scale(1.125);
+}
+
+.button-73:active {
+  transform: scale(1.025);
+}
+
+@media (min-width: 768px) {
+  .button-73 {
+    font-size: 1.5rem;
+    padding: .75rem 2rem;
+  }
+}
+
+
+/* --------------- */
+
+:root {
+  --radio-color: rgb(55, 55, 55);
+}
+
+.theme-checker {
+ 
+  border: 1px solid var(--box-text-color);
+  border-top: none;
+  border-radius: 10px;
+  background: white;
+}
+
+.theme-checker input[type="radio"] {
+  appearance: none;
+  width: 1.2rem;
+  height: 1.2rem;
+  outline: 2px solid var(--radio-color);
+  outline-offset: 2px;
+  border-radius: 2px;
+  transition:all 0.5s ease-in-out
+}
+
+.theme-checker input[type="radio"]:checked {
+  background: var(--radio-color);
+  transform:rotateZ(180deg);
+  border-radius:50%;
+}
+
+.theme-checker input[type="radio"]#dark {
+  --radio-color: rgb(23, 252, 35);
+}
+
+.theme-checker input[type="radio"]#pink {
+  --radio-color: rgb(39, 249, 53);
+}
+
+.theme-checker input[type="radio"]#violet {
+  --radio-color: rgb(109, 254, 146);
+}
+
+.theme-checker input[type="radio"]#darkslateblue {
+  --radio-color: rgba(68, 242, 59, 0.63);
+}
+
+.theme-checker input[type="radio"]#crimson {
+  --radio-color: rgb(20, 220, 53);
+}
+
+
+/* ------------------------------------- */

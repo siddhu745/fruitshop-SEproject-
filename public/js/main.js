@@ -42,3 +42,15 @@ function addToCart(item){
     // console.log(productData);
     $.post( "/cart" , productData)
 }
+
+
+function deleteProduct(id){
+    $.post("/cart",id)
+}
+
+function send(total){
+    var amount = {
+        totalprice : total.children[0].textContent
+    }
+    $.post('/buy', amount)
+}
