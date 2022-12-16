@@ -103,40 +103,47 @@ app.get('/contactus',function(req,res){
 })
 
 app.get('/cart',function(req,res){
-    Product.find({},function(err,foundItems){
-        res.render('cart',{title : "cart",
-                            cartItems : foundItems,
-                            username : un})
+    if(l === false){
+        res.render('home',{title:"signin"})
+    }
+    else{
+        Product.find({},function(err,foundItems){
+            res.render('cart',{title : "cart",
+                                cartItems : foundItems,
+                                })
+    
+        })
 
-    })
+    }
 })
-
-var amount;
 
 app.get('/buy',function(req,res){
     res.render('buy',{title: "buy"})
 })
-app.post('/buy',function(req,res){
-    amount = req.body
-})
 
-app.get('/showmsg',function(req,res){
-    res.render('show',{title:"message"})
-})
-app.post('/order',function(req,res){ 
-    const order = new Order({
-        firstname : req.body.fname,
-        lastname : req.body.lname,
-        address : req.body.inputAddress,
-        address2 : req.body.inputAddress2,
-        city : req.body.inputCity,
-        state : req.body.inputState,
-        zip : req.body.inputZip
-    })
-    // console.log(order);
-    order.save()
+app.post('/order',function(req,res){
+    if(req.body.fname == '' || req.body.lname == '' || req.body.inputAddress == '' ||
+    req.body.inputAddress2 == '' ||req.body.inputCity == '' ||
+     req.body.inputZip == '' || req.body.inputState == 'Choose...' ){
+        
+        res.redirect('/buy')
+    }
+    else{
+        const order = new Order({
+            firstname : req.body.fname,
+            lastname : req.body.lname,
+            address : req.body.inputAddress,
+            address2 : req.body.inputAddress2,
+            city : req.body.inputCity,
+            state : req.body.inputState,
+            zip : req.body.inputZip
+        })
+        // console.log(order);
+        order.save()
+    
+        res.render('show',{title:"message"})
 
-    res.redirect('/showmsg')
+    }
 })
 
 app.get('/signin',function(req,res){
